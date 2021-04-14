@@ -12,8 +12,12 @@ namespace CalcWinForm
 {
     public partial class Form1 : Form
     {
-        public string input = "";
-        string[] inputs = { };
+        private string input = "";
+        string[] inputs = Array.Empty<string>();
+
+        public string Input { get => input; set => input = value; }
+        public string[] Inputs { get => inputs; set => inputs = value; }
+
         public Form1()
         {
             InitializeComponent();
@@ -25,135 +29,135 @@ namespace CalcWinForm
         
         private void button1_Click(object sender, EventArgs e)
         {
-            input = "1";
+            Input = "1";
             outBox.AppendText("1");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            input = "2";
+            Input = "2";
             outBox.AppendText("2");
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            input = "3";
+            Input = "3";
             outBox.AppendText("3");
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            input = "4";
+            Input = "4";
             outBox.AppendText("4");
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            input = "5";
+            Input = "5";
             outBox.AppendText("5");
         }
         
         private void button6_Click(object sender, EventArgs e)
         {
-            input = "6";
+            Input = "6";
             outBox.AppendText("6");
         }
         
         private void button7_Click(object sender, EventArgs e)
         {
-            input = "7";
+            Input = "7";
             outBox.AppendText("7");
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            input = "8";
+            Input = "8";
             outBox.AppendText("8");
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            input = "9";
+            Input = "9";
             outBox.AppendText("9");
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            input = "0";
+            Input = "0";
             outBox.AppendText("0");
         }
         private void perBtn_Click(object sender, EventArgs e)
         {
-            input = ".";
+            Input = ".";
             outBox.AppendText(".");
         }
         private void eqBtn_Click(object sender, EventArgs e)
         {
-            input = "=";
+            Input = "=";
             outBox.AppendText("=");
         }
         private void additionBtn_Click(object sender, EventArgs e)
         {
-            input = "+";
+            Input = "+";
             outBox.AppendText("+");
         }
         
         private void subBtn_Click(object sender, EventArgs e)
         {
-            input = "-";
+            Input = "-";
             outBox.AppendText("-");
         }
         private void multiBtn_Click(object sender, EventArgs e)
         {
-            input = "*";
+            Input = "*";
             outBox.AppendText("*");
         }
         private void divBtn_Click(object sender, EventArgs e)
         {
-            input = "/";
+            Input = "/";
             outBox.AppendText("/");
         }
         public void calcController()
         {
-            while(input != "=")
+            while(Input != "=")
             {
-                switch (input)
+                switch (Input)
                 {
                     case "1":
-                        inputs.Append("1");
+                        Inputs.Append("1");
                         break;
                     case "2":
-                        inputs.Append("2");
+                        Inputs.Append("2");
                         break;
                     case "3":
-                        inputs.Append("3");
+                        Inputs.Append("3");
                         break;
                     case "4":
-                        inputs.Append("4");
+                        Inputs.Append("4");
                         break;
                     case "5":
-                        inputs.Append("5");
+                        Inputs.Append("5");
                         break;
                     case "6":
-                        inputs.Append("6");
+                        Inputs.Append("6");
                         break;
                     case "7":
-                        inputs.Append("7");
+                        Inputs.Append("7");
                         break;
                     case "8":
-                        inputs.Append("8");
+                        Inputs.Append("8");
                         break;
                     case "9":
-                        inputs.Append("9");
+                        Inputs.Append("9");
                         break;
                     case "0":
-                        inputs.Append("0");
+                        Inputs.Append("0");
                         break;
                     case "-":
-                        inputs.Append("-");
+                        Inputs.Append("-");
                         break;
                     case "*":
-                        inputs.Append("*");
+                        Inputs.Append("*");
                         break;
                     case "/":
-                        inputs.Append("/");
+                        Inputs.Append("/");
                         break;
                     case "+":
-                        inputs.Append("+");
+                        Inputs.Append("+");
                         break;
                 }
             }
