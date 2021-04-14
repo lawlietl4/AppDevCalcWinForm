@@ -111,8 +111,12 @@ namespace CalcWinForm
             Input = "/";
             outBox.AppendText("/");
         }
-        public void calcController()
+        enum ops { add, subtract, divide, multiply, none};
+        public int calcController()
         {
+            int current = 0;
+            int total = 0;
+            ops op = ops.none;
             while(Input != "=")
             {
                 switch (Input)
@@ -149,18 +153,50 @@ namespace CalcWinForm
                         break;
                     case "-":
                         Inputs.Append("-");
+                        op = ops.subtract;
                         break;
                     case "*":
                         Inputs.Append("*");
+                        op = ops.multiply;
                         break;
                     case "/":
                         Inputs.Append("/");
+                        op = ops.divide;
                         break;
                     case "+":
                         Inputs.Append("+");
+                        op = ops.add;
+                        break;
+                    default:
+                        current = Int32.Parse(input);
+                        if (op != ops.none)
+                        {
+                            switch (op)
+                            {
+                                case ops.add:
+                                    total += current;
+                                    break;
+                                case ops.subtract:
+                                    total -= current;
+                                    break;
+                                case ops.multiply:
+                                    total *= current;
+                                    break;
+                                case ops.divide:
+                                    total /= current;
+                                    break;
+                            }
+                            op = ops.none;
+                        }
+                        else
+                        {
+                            total = current;
+                            break;
+                        }
                         break;
                 }
             }
+            return total;
         }
     }
 }
