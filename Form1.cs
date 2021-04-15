@@ -12,11 +12,12 @@ namespace CalcWinForm
 {
     public partial class Form1 : Form
     {
+        enum ops { add, subtract, divide, multiply, none };
+        ops op = ops.none;
         private string input = "";
-        string[] inputs = Array.Empty<string>();
-
-        public string Input { get => input; set => input = value; }
-        public string[] Inputs { get => inputs; set => inputs = value; }
+        List<int> inputs = new List<int>();
+        int a = 0;
+        int b = 0;
 
         public Form1()
         {
@@ -24,180 +25,137 @@ namespace CalcWinForm
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //calcController();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Input = "1";
+            input = "1";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("1");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Input = "2";
+            input = "2";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("2");
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Input = "3";
+            input = "3";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("3");
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Input = "4";
+            input = "4";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("4");
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            Input = "5";
+            input = "5";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("5");
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Input = "6";
+            input = "6";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("6");
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Input = "7";
+            input = "7";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("7");
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            Input = "8";
+            input = "8";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("8");
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            Input = "9";
+            input = "9";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("9");
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            Input = "0";
+            input = "0";
+            inputs.Add(Convert.ToInt32(input));
             outBox.AppendText("0");
         }
         private void perBtn_Click(object sender, EventArgs e)
         {
-            Input = ".";
+            input = ".";
             outBox.AppendText(".");
+            
         }
         private void eqBtn_Click(object sender, EventArgs e)
         {
-            Input = "=";
+            input = "=";
             outBox.AppendText("=");
+            Operations();
+            inputs.Clear();
         }
         private void additionBtn_Click(object sender, EventArgs e)
         {
-            Input = "+";
+            input = "+";
             outBox.AppendText("+");
+            op = ops.add;
         }
 
         private void subBtn_Click(object sender, EventArgs e)
         {
-            Input = "-";
+            input = "-";
             outBox.AppendText("-");
+            op = ops.subtract;
         }
         private void multiBtn_Click(object sender, EventArgs e)
         {
-            Input = "*";
+            input = "*";
             outBox.AppendText("*");
+            op = ops.multiply;
         }
         private void divBtn_Click(object sender, EventArgs e)
         {
-            Input = "/";
+            input = "/";
             outBox.AppendText("/");
+            op = ops.divide;
         }
-        enum ops { add, subtract, divide, multiply, none };
-        public int calcController()
+        
+        public int Operations()
         {
             int current = 0;
             int total = 0;
-            ops op = ops.none;
-            while (Input != "=")
+            foreach (int inp in inputs)
             {
-                switch (Input)
+                a = inp;
+                b = total;
+                switch (op)
                 {
-                    case "1":
-                        Inputs.Append("1");
+                    case ops.add:
+                        total = a += b;
                         break;
-                    case "2":
-                        Inputs.Append("2");
+                    case ops.divide:
+                        total = a /= b;
                         break;
-                    case "3":
-                        Inputs.Append("3");
+                    case ops.multiply:
+                        total = a *= b;
                         break;
-                    case "4":
-                        Inputs.Append("4");
-                        break;
-                    case "5":
-                        Inputs.Append("5");
-                        break;
-                    case "6":
-                        Inputs.Append("6");
-                        break;
-                    case "7":
-                        Inputs.Append("7");
-                        break;
-                    case "8":
-                        Inputs.Append("8");
-                        break;
-                    case "9":
-                        Inputs.Append("9");
-                        break;
-                    case "0":
-                        Inputs.Append("0");
-                        break;
-                    case "-":
-                        Inputs.Append("-");
-                        op = ops.subtract;
-                        break;
-                    case "*":
-                        Inputs.Append("*");
-                        op = ops.multiply;
-                        break;
-                    case "/":
-                        Inputs.Append("/");
-                        op = ops.divide;
-                        break;
-                    case "+":
-                        Inputs.Append("+");
-                        op = ops.add;
-                        break;
-                    default:
-                        current = Int32.Parse(input);
-                        if (op != ops.none)
-                        {
-                            switch (op)
-                            {
-                                case ops.add:
-                                    total += current;
-                                    break;
-                                case ops.subtract:
-                                    total -= current;
-                                    break;
-                                case ops.multiply:
-                                    total *= current;
-                                    break;
-                                case ops.divide:
-                                    total /= current;
-                                    break;
-                            }
-                            op = ops.none;
-                        }
-                        else
-                        {
-                            total = current;
-                            break;
-                        }
+                    case ops.subtract:
+                        total = b -=a;
                         break;
                 }
             }
+            outBox.AppendText($"\n{total}\n");
             return total;
         }
-        
     }
 }
