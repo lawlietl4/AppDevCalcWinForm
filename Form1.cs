@@ -24,9 +24,9 @@ namespace CalcWinForm
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             Input = "1";
@@ -53,13 +53,13 @@ namespace CalcWinForm
             Input = "5";
             outBox.AppendText("5");
         }
-        
+
         private void button6_Click(object sender, EventArgs e)
         {
             Input = "6";
             outBox.AppendText("6");
         }
-        
+
         private void button7_Click(object sender, EventArgs e)
         {
             Input = "7";
@@ -95,7 +95,7 @@ namespace CalcWinForm
             Input = "+";
             outBox.AppendText("+");
         }
-        
+
         private void subBtn_Click(object sender, EventArgs e)
         {
             Input = "-";
@@ -111,13 +111,13 @@ namespace CalcWinForm
             Input = "/";
             outBox.AppendText("/");
         }
-        enum ops { add, subtract, divide, multiply, none};
+        enum ops { add, subtract, divide, multiply, none };
         public int calcController()
         {
             int current = 0;
             int total = 0;
             ops op = ops.none;
-            while(Input != "=")
+            while (Input != "=")
             {
                 switch (Input)
                 {
@@ -198,5 +198,6 @@ namespace CalcWinForm
             }
             return total;
         }
+        
     }
 }
