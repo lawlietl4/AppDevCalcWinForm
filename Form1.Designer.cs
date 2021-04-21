@@ -46,6 +46,8 @@ namespace CalcWinForm
             this.multiBtn = new System.Windows.Forms.Button();
             this.divBtn = new System.Windows.Forms.Button();
             this.outBox = new System.Windows.Forms.RichTextBox();
+            this.ClearButton = new System.Windows.Forms.Button();
+            this.ClearEverythingButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -226,17 +228,41 @@ namespace CalcWinForm
             // 
             // outBox
             // 
+            this.outBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.outBox.Location = new System.Drawing.Point(12, 17);
             this.outBox.Name = "outBox";
-            this.outBox.Size = new System.Drawing.Size(688, 482);
+            this.outBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.outBox.Size = new System.Drawing.Size(688, 387);
             this.outBox.TabIndex = 17;
-            this.outBox.Text = "";
+            this.outBox.Text = "0";
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(363, 410);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(337, 86);
+            this.ClearButton.TabIndex = 18;
+            this.ClearButton.Text = "C";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
+            // 
+            // ClearEverythingButton
+            // 
+            this.ClearEverythingButton.Location = new System.Drawing.Point(8, 410);
+            this.ClearEverythingButton.Name = "ClearEverythingButton";
+            this.ClearEverythingButton.Size = new System.Drawing.Size(349, 86);
+            this.ClearEverythingButton.TabIndex = 19;
+            this.ClearEverythingButton.Text = "CE";
+            this.ClearEverythingButton.UseVisualStyleBackColor = true;
+            this.ClearEverythingButton.Click += new System.EventHandler(this.ClearEverythingButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(712, 991);
+            this.Controls.Add(this.ClearEverythingButton);
+            this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.outBox);
             this.Controls.Add(this.divBtn);
             this.Controls.Add(this.multiBtn);
@@ -280,6 +306,8 @@ namespace CalcWinForm
         private System.Windows.Forms.Button multiBtn;
         private System.Windows.Forms.Button divBtn;
         private System.Windows.Forms.RichTextBox outBox;
+        private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button ClearEverythingButton;
     }
 }
 

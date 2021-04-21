@@ -14,10 +14,10 @@ namespace CalcWinForm
     {
         enum ops { add, subtract, divide, multiply, none };
         ops op = ops.none;
-        private string input = "";
         List<int> inputs = new List<int>();
         int a = 0;
         int b = 0;
+        double firstNum = 0;
 
         public Form1()
         {
@@ -30,132 +30,189 @@ namespace CalcWinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            input = "1";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("1");
+            if (outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "1";
+            }
+            else
+            {
+                outBox.Text += "1";
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            input = "2";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("2");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "2";
+            }
+            else
+            {
+                outBox.Text += "2";
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            input = "3";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("3");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "3";
+            }
+            else
+            {
+                outBox.Text += "3";
+            }
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            input = "4";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("4");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "4";
+            }
+            else
+            {
+                outBox.Text += "4";
+            }
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            input = "5";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("5");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "5";
+            }
+            else
+            {
+                outBox.Text += "5";
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            input = "6";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("6");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "6";
+            }
+            else
+            {
+                outBox.Text += "6";
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            input = "7";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("7");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "7";
+            }
+            else
+            {
+                outBox.Text += "7";
+            }
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            input = "8";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("8");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "8";
+            }
+            else
+            {
+                outBox.Text += "8";
+            }
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            input = "9";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("9");
+            if(outBox.Text == "0" && outBox.Text != null)
+            {
+                outBox.Text = "9";
+            }
+            else
+            {
+                outBox.Text += "9";
+            }
         }
         private void button10_Click(object sender, EventArgs e)
         {
-            input = "0";
-            inputs.Add(Convert.ToInt32(input));
-            outBox.AppendText("0");
+            outBox.Text += "0";
         }
         private void perBtn_Click(object sender, EventArgs e)
         {
-            input = ".";
-            outBox.AppendText(".");
+            outBox.Text += ".";
             
         }
         private void eqBtn_Click(object sender, EventArgs e)
         {
-            input = "=";
-            outBox.AppendText("=");
+            //outBox.AppendText("=");
             Operations();
-            inputs.Clear();
+            //inputs.Clear();
         }
         private void additionBtn_Click(object sender, EventArgs e)
         {
-            input = "+";
-            outBox.AppendText("+");
+            //outBox.AppendText("+");
             op = ops.add;
+            firstNum = Convert.ToDouble(outBox.Text);
         }
 
         private void subBtn_Click(object sender, EventArgs e)
         {
-            input = "-";
-            outBox.AppendText("-");
+            //outBox.AppendText("-");
             op = ops.subtract;
+            firstNum = Convert.ToDouble(outBox.Text);
         }
         private void multiBtn_Click(object sender, EventArgs e)
         {
-            input = "*";
-            outBox.AppendText("*");
+            //outBox.AppendText("*");
             op = ops.multiply;
+            firstNum = Convert.ToDouble(outBox.Text);
         }
         private void divBtn_Click(object sender, EventArgs e)
         {
-            input = "/";
-            outBox.AppendText("/");
+            //outBox.AppendText("/");
             op = ops.divide;
+            firstNum = Convert.ToDouble(outBox.Text);
         }
         
-        public int Operations()
+        public void Operations()
         {
-            int current = 0;
-            int total = 0;
-            foreach (int inp in inputs)
+            double SecondNumber;
+            double Result;
+            SecondNumber = Convert.ToDouble(outBox.Text);
+            switch (op)
             {
-                a = inp;
-                b = total;
-                switch (op)
-                {
-                    case ops.add:
-                        total = a += b;
+                case ops.add:
+                    Result = (firstNum += SecondNumber);
+                    outBox.AppendText($"\n{Result}\n");
+                    break;
+                case ops.subtract:
+                    Result = (firstNum -= SecondNumber);
+                    outBox.AppendText($"\n{Result}\n");
+                    break;
+                case ops.multiply:
+                    Result = (firstNum *= SecondNumber);
+                    outBox.AppendText($"\n{Result}\n");
+                    break;
+                case ops.divide:
+                    if (SecondNumber == 0)
+                    {
+                        outBox.Text = "Cannot Divide by 0";
+                    }
+                    else
+                    {
+                        Result = (firstNum /= SecondNumber);
+                        outBox.AppendText($"\n{Result}\n");
                         break;
-                    case ops.divide:
-                        total = a /= b;
-                        break;
-                    case ops.multiply:
-                        total = a *= b;
-                        break;
-                    case ops.subtract:
-                        total = b -=a;
-                        break;
-                }
+                    }
+                    break;
             }
-            outBox.AppendText($"\n{total}\n");
-            return total;
+        }
+
+        private void ClearEverythingButton_Click(object sender, EventArgs e)
+        {
+            outBox.Text = "0";
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            outBox.Text = "0";
         }
     }
 }
