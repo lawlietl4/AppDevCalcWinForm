@@ -13,11 +13,12 @@ namespace CalcWinForm
     public partial class Form1 : Form
     {
         enum ops { add, subtract, divide, multiply, none };
+        enum states { clear, op, ans };
         ops op = ops.none;
-        List<int> inputs = new List<int>();
-        int a = 0;
-        int b = 0;
         double firstNum = 0;
+        double secondNum = 0;
+        double Result;
+        states state = states.clear;
 
         public Form1()
         {
@@ -36,7 +37,8 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "1";
+                outBox.Text = "1";
+                runningOpBox.Text += "1";
             }
         }
 
@@ -45,10 +47,12 @@ namespace CalcWinForm
             if(outBox.Text == "0" && outBox.Text != null)
             {
                 outBox.Text = "2";
+
             }
             else
             {
-                outBox.Text += "2";
+                outBox.Text = "2";
+                runningOpBox.Text += "2";
             }
         }
         private void button3_Click(object sender, EventArgs e)
@@ -59,7 +63,7 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "3";
+                outBox.Text = "3";
             }
         }
         private void button4_Click(object sender, EventArgs e)
@@ -70,18 +74,20 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "4";
+                outBox.Text = "4";
+                runningOpBox.Text += "4";
             }
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            if(outBox.Text == "0" && outBox.Text != null)
+            if (outBox.Text != null && outBox.Text == "0")
             {
                 outBox.Text = "5";
             }
             else
             {
-                outBox.Text += "5";
+                outBox.Text = "5";
+                runningOpBox.Text += "5";
             }
         }
 
@@ -93,7 +99,8 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "6";
+                outBox.Text = "6";
+                runningOpBox.Text += "6";
             }
         }
 
@@ -105,7 +112,8 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "7";
+                outBox.Text = "7";
+                runningOpBox.Text += "7";
             }
         }
         private void button8_Click(object sender, EventArgs e)
@@ -116,7 +124,8 @@ namespace CalcWinForm
             }
             else
             {
-                outBox.Text += "8";
+                outBox.Text = "8";
+                runningOpBox.Text += "8";
             }
         }
         private void button9_Click(object sender, EventArgs e)
@@ -124,10 +133,12 @@ namespace CalcWinForm
             if(outBox.Text == "0" && outBox.Text != null)
             {
                 outBox.Text = "9";
+                runningOpBox.Text += "9";
             }
             else
             {
-                outBox.Text += "9";
+                outBox.Text = "9";
+                runningOpBox.Text += "9";
             }
         }
         private void button10_Click(object sender, EventArgs e)
@@ -141,15 +152,31 @@ namespace CalcWinForm
         }
         private void eqBtn_Click(object sender, EventArgs e)
         {
-            //outBox.AppendText("=");
+            runningOpBox.AppendText("=");
             Operations();
             //inputs.Clear();
         }
         private void additionBtn_Click(object sender, EventArgs e)
         {
-            //outBox.AppendText("+");
             op = ops.add;
-            firstNum = Convert.ToDouble(outBox.Text);
+            if(state == states.clear)
+            {
+                firstNum = Convert.ToDouble(outBox.Text);
+                runningOpBox.AppendText("+");
+                state = states.op;
+            }
+            else if(state == states.op)
+            {
+                secondNum = Convert.ToDouble(outBox.Text);
+                runningOpBox.Text = $"{firstNum} + {secondNum}";
+                Operations();
+                state = states.ans;
+            }
+            else if (state==states.ans)
+            {
+                firstNum = Result;
+                state = states.clear;
+            }
         }
 
         private void subBtn_Click(object sender, EventArgs e)
@@ -173,32 +200,32 @@ namespace CalcWinForm
         
         public void Operations()
         {
-            double SecondNumber;
-            double Result;
-            SecondNumber = Convert.ToDouble(outBox.Text);
             switch (op)
             {
                 case ops.add:
-                    Result = (firstNum += SecondNumber);
-                    outBox.AppendText($"\n{Result}\n");
+                    if (state == states.clear)
+                    {
+                        Result = firstNum += secondNum;
+                        outBox.Text = $"{Result}";
+                    }
                     break;
                 case ops.subtract:
-                    Result = (firstNum -= SecondNumber);
-                    outBox.AppendText($"\n{Result}\n");
+                    Result = firstNum -= secondNum;
+                    outBox.Text=$"{Result}";
                     break;
                 case ops.multiply:
-                    Result = (firstNum *= SecondNumber);
-                    outBox.AppendText($"\n{Result}\n");
+                    Result = firstNum *= secondNum;
+                    outBox.Text=$"{Result}";
                     break;
                 case ops.divide:
-                    if (SecondNumber == 0)
+                    if (secondNum == 0)
                     {
                         outBox.Text = "Cannot Divide by 0";
                     }
                     else
                     {
-                        Result = (firstNum /= SecondNumber);
-                        outBox.AppendText($"\n{Result}\n");
+                        Result = firstNum /= secondNum;
+                        outBox.Text=$"{Result}";
                         break;
                     }
                     break;
@@ -208,11 +235,13 @@ namespace CalcWinForm
         private void ClearEverythingButton_Click(object sender, EventArgs e)
         {
             outBox.Text = "0";
+            runningOpBox.Text = "";
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
             outBox.Text = "0";
+            runningOpBox.Text = "";
         }
     }
 }

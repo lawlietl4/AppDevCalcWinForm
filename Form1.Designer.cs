@@ -46,6 +46,7 @@ namespace CalcWinForm
             this.multiBtn = new System.Windows.Forms.Button();
             this.divBtn = new System.Windows.Forms.Button();
             this.outBox = new System.Windows.Forms.RichTextBox();
+            this.runningOpBox = new System.Windows.Forms.RichTextBox();
             this.ClearButton = new System.Windows.Forms.Button();
             this.ClearEverythingButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -229,12 +230,22 @@ namespace CalcWinForm
             // outBox
             // 
             this.outBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.outBox.Location = new System.Drawing.Point(12, 17);
+            this.outBox.Location = new System.Drawing.Point(12, 107);
             this.outBox.Name = "outBox";
             this.outBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.outBox.Size = new System.Drawing.Size(688, 387);
+            this.outBox.Size = new System.Drawing.Size(688, 280);
             this.outBox.TabIndex = 17;
             this.outBox.Text = "0";
+            // 
+            // runningOpBox
+            // 
+            this.runningOpBox.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.runningOpBox.Location = new System.Drawing.Point(8, 12);
+            this.runningOpBox.Name = "runningOpBox";
+            this.runningOpBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.runningOpBox.Size = new System.Drawing.Size(692, 73);
+            this.runningOpBox.TabIndex = 12;
+            this.runningOpBox.Text = "";
             // 
             // ClearButton
             // 
@@ -264,6 +275,7 @@ namespace CalcWinForm
             this.Controls.Add(this.ClearEverythingButton);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.outBox);
+            this.Controls.Add(this.runningOpBox);
             this.Controls.Add(this.divBtn);
             this.Controls.Add(this.multiBtn);
             this.Controls.Add(this.subBtn);
@@ -306,6 +318,7 @@ namespace CalcWinForm
         private System.Windows.Forms.Button multiBtn;
         private System.Windows.Forms.Button divBtn;
         private System.Windows.Forms.RichTextBox outBox;
+        private System.Windows.Forms.RichTextBox runningOpBox;
         private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.Button ClearEverythingButton;
     }
